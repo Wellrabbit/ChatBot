@@ -2,7 +2,12 @@ package chat.controller;
 
 import chat.model.Chatbot;
 import chat.view.ChatView;
-
+/**
+ * Controller for ChatBot project
+ * @author Emily Orton
+ * @version 1.2 10/23/15 Created constructor and intialized vairiables. 
+ *
+ */
 public class ChatController {
 	
 	private Chatbot chatBot;
@@ -18,6 +23,16 @@ public class ChatController {
 	public void start()
 	{
 		myView.displayAnswer("Hello " + chatBot.getUserName());
+		chat();
+	}
+	
+	private void chat()
+	{
+		String textFromUser = myView.getAnswers("Talk to the chatbot");
+		while(chatBot.lengthChecker(textFromUser))
+		{
+			 textFromUser = myView.getAnswers("wow" + textFromUser);
+		}
 	}
 
 }
