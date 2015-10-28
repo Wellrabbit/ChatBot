@@ -32,7 +32,9 @@ public class Chatbot
 	
 	private void buildMemesList()
 	{
-		
+		//cute animals
+		//doge
+		//10 memes
 	}
 	
 	private void buildPoliticalTopicsList()
