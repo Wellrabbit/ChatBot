@@ -2,36 +2,42 @@ package chat.controller;
 
 import chat.model.Chatbot;
 import chat.view.ChatView;
+
 /**
  * Controller for ChatBot project
+ * 
  * @author Emily Orton
- * @version 1.2 10/23/15 Created constructor and intialized vairiables. 
+ * @version 1.2 10/23/15 Created constructor and intialized vairiables.
  *
  */
 public class ChatController {
-	
+
 	private Chatbot chatBot;
 	private ChatView myView;
-	
-	public ChatController()
-	{
+
+	public ChatController() {
 		myView = new ChatView();
 		String user = myView.getAnswers("What is your name");
 		chatBot = new Chatbot(user);
 	}
-	
-	public void start()
-	{
+
+	public void start() {
 		myView.displayAnswer("Hello " + chatBot.getUserName());
 		chat();
 	}
-	
-	private void chat()
-	{
+
+	private void chat() {
 		String textFromUser = myView.getAnswers("Talk to the chatbot");
-		while(chatBot.lengthChecker(textFromUser))
+		while (chatBot.lengthChecker(textFromUser)) 
 		{
-			 textFromUser = myView.getAnswers("wow" + textFromUser);
+		
+			if(chatBot.contentChecker(textFromUser))
+			{
+				myView.displayAnswer("Wow I had no idea you loved" + chatBot.getContent());
+			}
+			
+			textFromUser = myView.getAnswers("wow" + textFromUser);
+		
 		}
 	}
 
