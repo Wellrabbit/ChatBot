@@ -7,7 +7,7 @@ import chat.view.ChatView;
  * Controller for ChatBot project
  * 
  * @author Emily Orton
- * @version 1.2 10/23/15 Created constructor and intialized vairiables.
+ * @version 1.3 10/30/15 Created constructor and intialized vairiables.
  *
  */
 public class ChatController {
@@ -34,6 +34,10 @@ public class ChatController {
 			if(chatBot.contentChecker(textFromUser))
 			{
 				myView.displayAnswer("Wow I had no idea you loved" + chatBot.getContent());
+			}
+			else if (chatBot.memeChecker(textFromUser))
+			{
+				myView.displayAnswer("That some dank meme");
 			}
 			
 			textFromUser = myView.getAnswers("wow" + textFromUser);
