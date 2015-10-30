@@ -31,7 +31,9 @@ public class Chatbot
 		buildPoliticalTopicsList();
 		
 	}
-	
+	/**
+	 * Builds Array list with specified adds.
+	 */
 	private void buildMemesList()
 	{
 		this.memesList.add("cute Animals");
@@ -111,7 +113,16 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean hasMeme = false;
+		
+		for (String meme: memesList)
+		{
+			if(currentInput.toLowerCase().contains(meme.toLowerCase()));
+			hasMeme = true;
+		}
+		
+		
+		return hasMeme;
 	}
 	
 	/**
