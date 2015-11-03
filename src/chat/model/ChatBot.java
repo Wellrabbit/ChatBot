@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
  * of the project.
  * @author Emily Orton
- * @version 1.4 10/30/15 Added meme checker, using for each loop.
+ * @version 1.5 11/3/15 Added switch statement 
  */
 public class Chatbot
 {
@@ -54,6 +54,21 @@ public class Chatbot
 	
 	private void buildPoliticalTopicsList()
 	{
+		this.politicalTopicList.add("election");
+		this.politicalTopicList.add("democrat");
+		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("liberal");
+		this.politicalTopicList.add("conservation");
+		this.politicalTopicList.add("TRUMP");
+		this.politicalTopicList.add("CLINTON");
+		this.politicalTopicList.add("BIDEN");
+		this.politicalTopicList.add("CARSON");
+		this.politicalTopicList.add("RUBIO");
+		this.politicalTopicList.add("FIORINA");
+		this.politicalTopicList.add("SANDERS");
+		this.politicalTopicList.add("vote");
+		this.politicalTopicList.add("11/8/2016");
+		
 		
 	}
 	
@@ -102,7 +117,16 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+boolean hasPolitic = false;
+		
+		for (String politic: politicalTopicList)
+		{
+			if(currentInput.toLowerCase().contains(politic.toLowerCase()));
+			hasPolitic = true;
+		}
+		
+		
+		return hasPolitic;
 	}
 	
 	public String processQuestion(String currentInput)
