@@ -105,7 +105,52 @@ public class Chatbot
 		return false;
 	}
 	
-	
+	public String processQuestion(String currentInput)
+	{
+		String backTalk;
+		backTalk = "Topic Time";
+		
+		int randomTopic = (int) (Math.random() * 5);
+		
+		switch (randomTopic)
+		{
+		case 0: 
+			if(contentChecker(currentInput))
+			{
+				backTalk = "Thats my favorite thing whats next?";
+			}
+			break;
+		case 1:
+			if(memeChecker(currentInput))
+			{
+				backTalk = "That is a popular Meme this year! What about your favorite food?";
+			}
+			break;
+		case 2:
+			if(politicalTopicChecker(currentInput))
+			{
+				backTalk = "Really Thats what you want to talk about wow okay any questions";
+			}
+			break;
+		case 3: 
+			if(currentInput.length() < 5)
+			{
+				backTalk = "Could you please elaborate";
+			}
+			break;
+		case 4:
+			if(currentInput.length() > 26)
+			{
+				backTalk = "Can you dumb it down my CPU is overloading";
+			}
+				
+			break;
+		default:
+			backTalk = "YOU GET THE EASTER EGG";
+			break;
+		}
+		return backTalk;
+	}
 	/**
 	 * Checks to see that the supplied String value is in the current memesList variable.
 	 * @param currentInput The supplied String to be checked.
