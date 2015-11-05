@@ -43,7 +43,7 @@ public class ChatView {
  */
 	public void displayAnswer(String Display)
 	{
-		JOptionPane.showMessageDialog(null, Display);
+		JOptionPane.showMessageDialog(null, Display, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 		
 	}
 }
