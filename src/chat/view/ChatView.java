@@ -16,10 +16,13 @@ public class ChatView {
 	 * @param Display
 	 * @return Text given by user.
 	 */
+	
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
 	public ChatView()
 	{
-		private String windowMessage;
-		private ImageIcon chatIcon;
+		
 		
 		windowMessage = "This is my Chatbot ^.^";
 		chatIcon = new ImageIcon(getClass().getResource("images/mypic.jpg"));
@@ -28,7 +31,7 @@ public class ChatView {
 	{
 		String answer = "";
 		
-		answer = JOptionPane.showInputDialog(null, Display);
+		answer = JOptionPane.showInputDialog(null, Display, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon, null, "Type here Plese" ).toString();
 		
 		return answer;
 		
