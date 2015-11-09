@@ -121,8 +121,10 @@ boolean hasPolitic = false;
 		
 		for (String politic: politicalTopicList)
 		{
-			if(currentInput.toLowerCase().contains(politic.toLowerCase()));
+			if(currentInput.toLowerCase().contains(politic.toLowerCase()))
+			{
 			hasPolitic = true;
+			}
 		}
 		
 		
@@ -186,8 +188,10 @@ boolean hasPolitic = false;
 		
 		for (String meme: memesList)
 		{
-			if(currentInput.toLowerCase().contains(meme.toLowerCase()));
-			hasMeme = true;
+			if(currentInput.toLowerCase().contains(meme.toLowerCase()))
+			{
+				hasMeme = true;
+			}
 		}
 		
 		
@@ -218,7 +222,7 @@ boolean hasPolitic = false;
 	 */
 	public ArrayList<String> getMemesList()
 	{
-		return null;
+		return memesList;
 	}
 	
 	/**
@@ -227,7 +231,7 @@ boolean hasPolitic = false;
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 	
 	/**

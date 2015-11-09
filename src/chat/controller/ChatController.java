@@ -28,21 +28,32 @@ public class ChatController {
 
 	private void chat() {
 		String textFromUser = myView.getAnswers("Talk to the chatbot");
+		
 		while (chatBot.lengthChecker(textFromUser)) 
 		{
 		
 			if(chatBot.contentChecker(textFromUser))
 			{
-				myView.displayAnswer("Wow I had no idea you loved" + chatBot.getContent());
+				myView.displayAnswer("Wow I had no idea you loved " + chatBot.getContent() );
+				myView.displayAnswer(chatBot.processQuestion(textFromUser));
 			}
 			else if (chatBot.memeChecker(textFromUser))
 			{
 				myView.displayAnswer("That some dank meme");
+				myView.displayAnswer(chatBot.processQuestion(textFromUser));
+			}
+			else if (chatBot.politicalTopicChecker(textFromUser))
+			{
+				myView.displayAnswer("I cant beileve your into the election");
+				myView.displayAnswer(chatBot.processQuestion(textFromUser));
 			}
 			
-			textFromUser = myView.getAnswers("wow" + textFromUser);
+			textFromUser = myView.getAnswers("wow " + textFromUser);
+			
 		
 		}
 	}
+
+	
 
 }
