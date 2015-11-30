@@ -118,6 +118,18 @@ public class Chatbot
 		
 		return hasMash;
 	}
+	
+	public boolean quitChecker (String currentInput)
+	{
+		boolean hasQuit = false;
+		if(currentInput.equals("Quit"))
+		{
+			hasQuit = true;
+		}
+		
+		return hasQuit;
+		
+	}
 
 	/**
 	 * Checks if the supplied String matches the content area for this Chatbot
