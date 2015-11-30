@@ -15,6 +15,7 @@ public class ChatController {
 
 	private Chatbot chatBot;
 	private ChatView myView;
+	
 	private ChatFrame baseFrame;
 
 	public ChatController() 
@@ -56,6 +57,35 @@ public class ChatController {
 			
 		
 		}
+	}
+	public Chatbot getChatBot()
+	{
+		return chatBot;
+	}
+
+	public void setChatBot(Chatbot chatBot)
+	{
+		this.chatBot = chatBot;
+	}
+
+	public ChatView getChatView()
+	{
+		return myView;
+	}
+
+	public void setMyView(ChatView myView)
+	{
+		this.myView = myView;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
 	}
 
 	
