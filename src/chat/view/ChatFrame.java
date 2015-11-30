@@ -13,5 +13,20 @@ public class ChatFrame extends JFrame
 	 basePanel = new ChatPanel(baseController);
 	 setFrame();
  }
+
+
+private void setFrame()
+{
+	 this.setContentPane(basePanel);
+	 this.setTitle("Chat Bot");
+	 this.setResizable(false);
+	 this.setSize(600,600);
+	 this.setVisible(true);
+	
+}
+ public ChatController getBaseController()
+ {
+	 return baseController;
+ }
  
 }
