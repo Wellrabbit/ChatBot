@@ -58,12 +58,12 @@ public class ChatController {
 		
 		}
 	}
-	public Chatbot getChatBot()
+	public Chatbot getChatbot()
 	{
 		return chatBot;
 	}
 
-	public void setChatBot(Chatbot chatBot)
+	public void setChatbot(Chatbot chatBot)
 	{
 		this.chatBot = chatBot;
 	}
