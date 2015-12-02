@@ -14,7 +14,9 @@ public class ChatFrame extends JFrame
 	 setFrame();
  }
 
-
+/**
+ * Sets the frame to visble and sets size also makes it able resize.
+ */
 private void setFrame()
 {
 	 this.setContentPane(basePanel);

@@ -14,6 +14,8 @@ public class Chatbot
 	private ArrayList<String> memesList;
 	private ArrayList<String> politicalTopicList;
 	private String userName;
+	
+
 	private String content;
 
 	/**
@@ -39,7 +41,7 @@ public class Chatbot
 	 */
 	private void buildMemesList()
 	{
-		this.memesList.add("cute Animals");
+		this.memesList.add("cute animals");
 		this.memesList.add("doge");
 		this.memesList.add("pepe the rarest");
 		this.memesList.add("John Cena");
@@ -54,12 +56,14 @@ public class Chatbot
 		// doge
 		// 10 memes
 	}
-
+/**
+ * Build PoliticalTopic array.
+ */
 	private void buildPoliticalTopicsList()
 	{
 		this.politicalTopicList.add("election");
-		this.politicalTopicList.add("democrat");
-		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("Republican");
 		this.politicalTopicList.add("liberal");
 		this.politicalTopicList.add("conservation");
 		this.politicalTopicList.add("TRUMP");
@@ -70,7 +74,7 @@ public class Chatbot
 		this.politicalTopicList.add("FIORINA");
 		this.politicalTopicList.add("SANDERS");
 		this.politicalTopicList.add("vote");
-		this.politicalTopicList.add("11/8/2016");
+		this.politicalTopicList.add("11/4/16");
 
 	}
 
@@ -95,7 +99,11 @@ public class Chatbot
 		return hasLength;
 
 	}
-
+/**
+ * Check to see specific incedents of keyboard mashing. Returns true in those instances.
+ * @param currentInput
+ * @return true or false based on if the keyboard has been mashed
+ */
 	public boolean keyboardMashChecker(String currentInput)
 	{
 		boolean hasMash = false;
@@ -118,11 +126,15 @@ public class Chatbot
 		
 		return hasMash;
 	}
-	
+	/**
+	 * Checks to see if user has quit and returns true if quit is recognized.
+	 * @param currentInput
+	 * @return True or false
+	 */
 	public boolean quitChecker (String currentInput)
 	{
 		boolean hasQuit = false;
-		if(currentInput.equals("Quit"))
+		if(currentInput.equals("quit"))
 		{
 			hasQuit = true;
 		}
@@ -173,12 +185,19 @@ public class Chatbot
 
 		return hasPolitic;
 	}
-
+/**
+ * Switch case that checks input for diffrent things and returns responces. 
+ * @param currentInput
+ * @return Specific responce
+ */
 	public String processQuestion(String currentInput)
 	{
 		String backTalk;
 		backTalk = "Topic Time";
-
+		if(keyboardMashChecker(currentInput))
+		{
+			return "Stop mashing Keyboard!!!";
+		}
 		int randomTopic = (int) (Math.random() * 5);
 
 		switch (randomTopic)
@@ -292,6 +311,20 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
+		this.content = content;
+	}
+	public void setMemesList(ArrayList<String> memesList)
+	{
+		this.memesList = memesList;
+	}
 
+	public void setPoliticalTopicList(ArrayList<String> politicalTopicList)
+	{
+		this.politicalTopicList = politicalTopicList;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
 	}
 }

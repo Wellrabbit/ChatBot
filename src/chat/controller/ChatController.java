@@ -11,14 +11,15 @@ import chat.view.ChatFrame;
  * @version 1.3 10/30/15 Created constructor and intialized vairiables.
  *
  */
-public class ChatController {
+public class ChatController
+{
 
 	private Chatbot chatBot;
 	private ChatView myView;
-	
+
 	private ChatFrame baseFrame;
 
-	public ChatController() 
+	public ChatController()
 	{
 		myView = new ChatView();
 		String user = myView.getAnswers("What is your name");
@@ -26,38 +27,54 @@ public class ChatController {
 		baseFrame = new ChatFrame(this);
 	}
 
-	public void start() {
+	public void start()
+	{
 		myView.displayAnswer("Hello " + chatBot.getUserName());
-		chat();
+		//chat();
 	}
-
-	private void chat() {
+/**
+ * Used in popup controller version to run chat between user and chatbot. 
+ * Takes user input loops it to processQuestion switch statment and displays responce
+ */
+	private void chat()
+	{
 		String textFromUser = myView.getAnswers("Talk to the chatbot");
-		
-		while (chatBot.lengthChecker(textFromUser)) 
+
+		while (chatBot.lengthChecker(textFromUser))
 		{
-		
-			if(chatBot.contentChecker(textFromUser))
-			{
-				myView.displayAnswer("Wow I had no idea you loved " + chatBot.getContent() );
-				myView.displayAnswer(chatBot.processQuestion(textFromUser));
-			}
-			else if (chatBot.memeChecker(textFromUser))
-			{
-				myView.displayAnswer("That some dank meme");
-				myView.displayAnswer(chatBot.processQuestion(textFromUser));
-			}
-			else if (chatBot.politicalTopicChecker(textFromUser))
-			{
-				myView.displayAnswer("I cant beileve your into the election");
-				myView.displayAnswer(chatBot.processQuestion(textFromUser));
-			}
-			
+
+			textFromUser = chatBot.processQuestion(textFromUser);
 			textFromUser = myView.getAnswers("wow " + textFromUser);
-			
-		
+
 		}
 	}
+	/**
+	 * Used in the GUI version.
+	 * Sends the users text to the chatbot then loops it back.
+	 * Also checks to see if user would like to quit.
+	 */
+	public String fromUserToChatbot(String textFromUser)
+	{
+		String botResponce = "";
+		if(chatBot.quitChecker(textFromUser))
+		{
+			shutDown();
+		}
+		botResponce = chatBot.processQuestion(textFromUser);
+		
+		return botResponce;
+	}
+	/**
+	 * Allows user to quit chatbot by typing quit
+	 */
+	private void shutDown()
+	{
+		myView.displayAnswer("Goodbye," + chatBot.getUserName() + " That was fun!!!" );
+		System.exit(0);
+	}
+	
+	
+
 	public Chatbot getChatbot()
 	{
 		return chatBot;
@@ -87,7 +104,5 @@ public class ChatController {
 	{
 		this.baseFrame = baseFrame;
 	}
-
-	
 
 }
