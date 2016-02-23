@@ -1,6 +1,7 @@
 package chat.controller;
 
-import chat.model.Chatbot;
+import chat.model.ChatBot;
+
 import chat.view.ChatView;
 import chat.view.ChatFrame;
 
@@ -14,7 +15,7 @@ import chat.view.ChatFrame;
 public class ChatController
 {
 
-	private Chatbot chatBot;
+	private ChatBot chatBot;
 	private ChatView myView;
 
 	private ChatFrame baseFrame;
@@ -23,7 +24,7 @@ public class ChatController
 	{
 		myView = new ChatView();
 		String user = myView.getAnswers("What is your name");
-		chatBot = new Chatbot(user);
+		chatBot = new ChatBot(user);
 		baseFrame = new ChatFrame(this);
 	}
 
@@ -75,12 +76,12 @@ public class ChatController
 	
 	
 
-	public Chatbot getChatbot()
+	public ChatBot getChatbot()
 	{
 		return chatBot;
 	}
 
-	public void setChatbot(Chatbot chatBot)
+	public void setChatbot(ChatBot chatBot)
 	{
 		this.chatBot = chatBot;
 	}

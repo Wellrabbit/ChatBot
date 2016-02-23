@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Emily Orton
  * @version 1.5 11/3/15 Added switch statement
  */
-public class Chatbot
+public class ChatBot
 {
 	private ArrayList<String> memesList;
 	private ArrayList<String> politicalTopicList;
@@ -24,7 +24,7 @@ public class Chatbot
 	 * @param userName
 	 *            The username for the chatbot.
 	 */
-	public Chatbot(String userName)
+	public ChatBot(String userName)
 	{
 
 		this.memesList = new ArrayList<String>();
