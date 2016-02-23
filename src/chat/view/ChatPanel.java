@@ -18,6 +18,11 @@ public class ChatPanel extends JPanel
 {
 	private ChatController baseController;
 	private JButton submitButton;
+	private JButton chatButton;
+	private JButton tweetButton;
+	private JButton checkTwitterButton;
+	private JButton saveButton;
+	private JButton openButton;
 	private JTextField userResponceField;
 	private JTextArea ChatbotTextArea;
 	private SpringLayout baseLayout;
@@ -28,6 +33,11 @@ public class ChatPanel extends JPanel
 		baseLayout = new SpringLayout();
 		this.baseController = baseController;
 		submitButton = new JButton("Submit to chatbot");
+		chatButton = new JButton("Click to Chat");
+		tweetButton = new JButton("Send Tweet");
+		checkTwitterButton = new JButton("Lets look for a topic on Twitter");
+		saveButton = new JButton("Save this Chat");
+		openButton = new JButton("Open a Saved Chat ^.^");
 		userResponceField = new JTextField(30);
 		ChatbotTextArea = new JTextArea(10, 30);
 		promptLable = new JLabel("Chat with my Chatbot");
@@ -52,6 +62,11 @@ public class ChatPanel extends JPanel
 		this.setLayout(baseLayout);
 		this.add(promptLable);
 		this.add(submitButton);
+		this.add(chatButton);
+		this.add(tweetButton);
+		this.add(checkTwitterButton);
+		this.add(saveButton);
+		this.add(openButton);
 		this.add(userResponceField);
 		this.add(ChatbotTextArea);
 		userResponceField.setToolTipText("Type to talk to chatbot");
