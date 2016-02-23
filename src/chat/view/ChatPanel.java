@@ -25,6 +25,7 @@ public class ChatPanel extends JPanel
 	private JButton openButton;
 	private JTextField userResponceField;
 	private JTextArea ChatbotTextArea;
+	private JScrollPane textScroll;
 	private SpringLayout baseLayout;
 	private JLabel promptLable;
 
@@ -39,14 +40,17 @@ public class ChatPanel extends JPanel
 		saveButton = new JButton("Save this Chat");
 		openButton = new JButton("Open a Saved Chat ^.^");
 		userResponceField = new JTextField(30);
-		ChatbotTextArea = new JTextArea(10, 30);
+
 		promptLable = new JLabel("Chat with my Chatbot");
 
+		ChatbotTextArea = new JTextArea(10, 30);
+		setupChatPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
-//Changes background to a random color
+
+	// Changes background to a random color
 	private void changeColor()
 	{
 		int red, blue, green;
@@ -56,7 +60,23 @@ public class ChatPanel extends JPanel
 
 		this.setBackground(new Color(red, blue, green));
 	}
-//Sets the layout and adds elements to the panel
+
+	private void setupChatPane()
+	{
+		ChatbotTextArea.setLineWrap(true);
+		ChatbotTextArea.setWrapStyleWord(true);
+		ChatbotTextArea.setEnabled(false);
+		ChatbotTextArea.setEditable(false);
+		textScroll = new JScrollPane(ChatbotTextArea);
+
+		textScroll
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		textScroll
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+	}
+
+	// Sets the layout and adds elements to the panel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -68,32 +88,71 @@ public class ChatPanel extends JPanel
 		this.add(saveButton);
 		this.add(openButton);
 		this.add(userResponceField);
-		this.add(ChatbotTextArea);
+		this.add(textScroll);
+		// this.add(ChatbotTextArea);
 		userResponceField.setToolTipText("Type to talk to chatbot");
-		ChatbotTextArea.setEnabled(false);
+
+		// ChatbotTextArea.setEnabled(false);
 	}
-//Dump code for layout 
+
+	// Dump code for layout
 	private void setupLayout()
 	{
+		baseLayout.putConstraint(SpringLayout.WEST, tweetButton, 217,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, tweetButton, -93,
+				SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 0,
+				SpringLayout.NORTH, checkTwitterButton);
+		baseLayout.putConstraint(SpringLayout.WEST, checkTwitterButton, 159,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, checkTwitterButton, -6,
+				SpringLayout.NORTH, tweetButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 0,
+				SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0,
+				SpringLayout.WEST, openButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, openButton, 0,
+				SpringLayout.NORTH, tweetButton);
+		baseLayout.putConstraint(SpringLayout.WEST, openButton, 10,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, ChatbotTextArea, 49,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, ChatbotTextArea, 45,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, ChatbotTextArea, -28,
+				SpringLayout.NORTH, userResponceField);
+		baseLayout.putConstraint(SpringLayout.EAST, ChatbotTextArea, -80,
+				SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, promptLable, -29,
+				SpringLayout.NORTH, checkTwitterButton);
+		baseLayout.putConstraint(SpringLayout.EAST, promptLable, -224,
+				SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -10,
+				SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, submitButton, 0,
 				SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, submitButton, -10,
+		baseLayout.putConstraint(SpringLayout.EAST, submitButton, 0,
 				SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, userResponceField, 29,
+		baseLayout.putConstraint(SpringLayout.NORTH, textScroll, 50,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, textScroll, 100,
 				SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, userResponceField, -46,
-				SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, ChatbotTextArea, 0,
-				SpringLayout.WEST, promptLable);
-		baseLayout.putConstraint(SpringLayout.SOUTH, ChatbotTextArea, -21,
+		baseLayout.putConstraint(SpringLayout.SOUTH, textScroll, 200,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, textScroll, -20,
+				SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, userResponceField, 273,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, userResponceField, 115,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, userResponceField, -71,
+				SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, userResponceField, -62,
 				SpringLayout.NORTH, promptLable);
-		baseLayout.putConstraint(SpringLayout.WEST, promptLable, 45,
-				SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, promptLable, -5,
-				SpringLayout.NORTH, userResponceField);
-
 	}
-//Makes the button click actually do something
+
+	// Makes the button click actually do something
 	private void setupListeners()
 	{
 		submitButton.addActionListener(new ActionListener()
