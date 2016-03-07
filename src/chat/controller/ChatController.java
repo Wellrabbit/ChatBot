@@ -1,7 +1,7 @@
 package chat.controller;
 
+import chat.model.CTECTwitter;
 import chat.model.ChatBot;
-
 import chat.view.ChatView;
 import chat.view.ChatFrame;
 
@@ -17,7 +17,7 @@ public class ChatController
 
 	private ChatBot chatBot;
 	private ChatView myView;
-
+	private CTECTwitter myTwitter;
 	private ChatFrame baseFrame;
 
 	public ChatController()
@@ -26,6 +26,7 @@ public class ChatController
 		String user = myView.getAnswers("What is your name");
 		chatBot = new ChatBot(user);
 		baseFrame = new ChatFrame(this);
+		myTwitter = new CTECTwitter(this);
 	}
 
 	public void start()
@@ -37,6 +38,10 @@ public class ChatController
  * Used in popup controller version to run chat between user and chatbot. 
  * Takes user input loops it to processQuestion switch statment and displays responce
  */
+	public void handleErrors(String error)
+	{
+		myView.displayAnswer(error);
+	}
 	private void chat()
 	{
 		String textFromUser = myView.getAnswers("Talk to the chatbot");
@@ -49,6 +54,12 @@ public class ChatController
 
 		}
 	}
+	
+	public void sendTweet(String tweet)
+	{
+		myTwitter.sendTweet(tweet);
+	}
+	
 	/**
 	 * Used in the GUI version.
 	 * Sends the users text to the chatbot then loops it back.
