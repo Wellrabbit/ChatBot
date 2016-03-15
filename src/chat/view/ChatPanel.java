@@ -1,5 +1,6 @@
 package chat.view;
 
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -173,6 +174,14 @@ public class ChatPanel extends JPanel
 				userResponceField.setText(""); // Clears user field
 			}
 		});
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseController.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen! - emmy<3");
+			}	
+		}
+		);
 	}
 
 	public JTextArea getResponceFeild()
