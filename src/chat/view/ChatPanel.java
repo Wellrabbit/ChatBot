@@ -21,6 +21,7 @@ public class ChatPanel extends JPanel
 	private JButton submitButton;
 	private JButton chatButton;
 	private JButton tweetButton;
+	private JButton analyzeTwitter;
 	private JButton checkTwitterButton;
 	private JButton saveButton;
 	private JButton openButton;
@@ -41,7 +42,7 @@ public class ChatPanel extends JPanel
 		saveButton = new JButton("Save this Chat");
 		openButton = new JButton("Open a Saved Chat ^.^");
 		userResponceField = new JTextField(30);
-
+		analyzeTwitter = new JButton("Look at Twitter");
 		promptLable = new JLabel("Chat with my Chatbot");
 
 		ChatbotTextArea = new JTextArea(10, 30);
@@ -90,6 +91,7 @@ public class ChatPanel extends JPanel
 		this.add(openButton);
 		this.add(userResponceField);
 		this.add(textScroll);
+		this.add(analyzeTwitter);
 		// this.add(ChatbotTextArea);
 		userResponceField.setToolTipText("Type to talk to chatbot");
 
@@ -180,8 +182,15 @@ public class ChatPanel extends JPanel
 			{
 				baseController.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen! - emmy<3");
 			}	
-		}
-		);
+		});
+		analyzeTwitter.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent click)
+		{
+			String user = userResponceField.getText();
+			String results = baseController.analyze(user);
+			chatbotTextArea.setText(results);
+		}	
+		});
 	}
 
 	public JTextArea getResponceFeild()

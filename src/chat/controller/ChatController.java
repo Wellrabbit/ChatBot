@@ -1,5 +1,6 @@
 package chat.controller;
 
+import twitter4j.TwitterException;
 import chat.model.CTECTwitter;
 import chat.model.ChatBot;
 import chat.view.ChatView;
@@ -41,6 +42,22 @@ public class ChatController
 	public void handleErrors(String error)
 	{
 		myView.displayAnswer(error);
+	}
+	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twitter user"  userName + "has many tweeets.";
+		
+		try
+		{
+			myTwitter.loadTweets(userName);
+		}
+		catch (TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis += myTwitter.topResults();
+		return userAnalysis;
 	}
 	private void chat()
 	{
