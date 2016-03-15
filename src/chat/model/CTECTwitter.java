@@ -50,6 +50,18 @@ private String removePunctuation(String currentString)
 	}
 }
 
+private void removeEmptyText()
+{
+	for (int spot = 0; spot < wordsList.size(); spot++)
+	{
+		if(wordsList.get(spot).equals(" "))
+		{
+			wordsList.remove(spot);
+			spot--;
+		}
+	}
+}
+
 @SupressWarning("unchecked")
 private List removeCommonEnglishWords(List<String> wordList)
 {
