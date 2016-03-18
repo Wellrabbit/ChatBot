@@ -188,7 +188,7 @@ public class ChatPanel extends JPanel
 		{
 			String user = userResponceField.getText();
 			String results = baseController.analyze(user);
-			chatbotTextArea.setText(results);
+			ChatbotTextArea.setText(results);
 		}	
 		});
 	}
