@@ -59,7 +59,7 @@ public class CTECTwitter
 	{
 		for (int spot = 0; spot < wordsList.size(); spot++)
 		{
-			if (wordsList.get(spot).equals(" "))
+			if (wordsList.get(spot).equals(""))
 			{
 				wordsList.remove(spot);
 				spot--;
@@ -93,13 +93,13 @@ public class CTECTwitter
 		int wordCount = 0;
 		try
 		{
-			Scanner wordFile = new Scanner(new File("coonWords.txt"));
+			Scanner wordFile = new Scanner(new File("commonWords.txt"));
 			while (wordFile.hasNext())
 			{
 				wordCount++;
 				wordFile.next();
 			}
-			wordFile.reset();
+			wordFile = new Scanner(new File("commonWords.txt"));
 			boringWords = new String[wordCount];
 			int boringWordCount = 0;
 			while (wordFile.hasNext())
@@ -165,9 +165,11 @@ public class CTECTwitter
 				}
 			}
 		}
-		tweetResults = "The top word in the tweets was"
-				+ wordsList.get(topWordLocations) + "and it was used"
-				+ topCount + "Times.";
+		tweetResults = "The top word in the tweets was "
+				+ wordsList.get(topWordLocations) + " and it was used "
+				+ topCount + " Times.";
+		wordsList.clear();
+		statusList.clear();
 		return tweetResults;
 	}
 

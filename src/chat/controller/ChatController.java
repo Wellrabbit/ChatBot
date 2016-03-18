@@ -46,7 +46,7 @@ public class ChatController
 	
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The Twitter user" + userName + "has many tweeets.";
+		String userAnalysis = "The Twitter user " + userName + " has many tweeets.";
 		
 		try
 		{
