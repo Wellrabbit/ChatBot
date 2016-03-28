@@ -1,6 +1,5 @@
 package chat.view;
 
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,6 +24,7 @@ public class ChatPanel extends JPanel
 	private JButton checkTwitterButton;
 	private JButton saveButton;
 	private JButton openButton;
+	private JButton queryTwitter;
 	private JTextField userResponceField;
 	private JTextArea ChatbotTextArea;
 	private JScrollPane textScroll;
@@ -43,6 +43,8 @@ public class ChatPanel extends JPanel
 		openButton = new JButton("Open a Saved Chat ^.^");
 		userResponceField = new JTextField(30);
 		analyzeTwitter = new JButton("Look at Twitter");
+		queryTwitter = new JButton("Search twitter");
+
 		promptLable = new JLabel("Chat with my Chatbot");
 
 		ChatbotTextArea = new JTextArea(10, 30);
@@ -92,6 +94,7 @@ public class ChatPanel extends JPanel
 		this.add(userResponceField);
 		this.add(textScroll);
 		this.add(analyzeTwitter);
+		this.add(queryTwitter);
 		// this.add(ChatbotTextArea);
 		userResponceField.setToolTipText("Type to talk to chatbot");
 
@@ -153,6 +156,10 @@ public class ChatPanel extends JPanel
 				SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, userResponceField, -62,
 				SpringLayout.NORTH, promptLable);
+		baseLayout.putConstraint(SpringLayout.NORTH, analyzeTwitter, 0,
+				SpringLayout.NORTH, queryTwitter);
+		baseLayout.putConstraint(SpringLayout.WEST, analyzeTwitter, 6,
+				SpringLayout.EAST, queryTwitter);
 	}
 
 	// Makes the button click actually do something
@@ -180,16 +187,25 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				baseController.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen! - emmy<3");
-			}	
+				baseController
+						.sendTweet("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen! - emmy<3");
+			}
 		});
-		analyzeTwitter.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent click)
+		analyzeTwitter.addActionListener(new ActionListener()
 		{
-			String user = userResponceField.getText();
-			String results = baseController.analyze(user);
-			ChatbotTextArea.setText(results);
-		}	
+			public void actionPerformed(ActionEvent click)
+			{
+				String user = userResponceField.getText();
+				String results = baseController.analyze(user);
+				ChatbotTextArea.setText(results);
+			}
+		});
+		queryTwitter.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				ChatbotTextArea.setText(baseController.doInvestigation("nigga"));
+			}
 		});
 	}
 

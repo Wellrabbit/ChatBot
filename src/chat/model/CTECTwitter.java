@@ -117,6 +117,7 @@ public class CTECTwitter
 		return boringWords;
 
 	}
+	
 
 	public void loadTweets(String twitterHandel) throws TwitterException
 	{
@@ -140,7 +141,29 @@ public class CTECTwitter
 		removeCommonEnglishWords(wordsList);
 		removeEmptyText();
 	}
-
+public String sampleInvestigation(String investigation) throws TwitterException
+{
+	String results = "";
+	
+	Query query = new Query(investigation);
+	query.setCount(100);
+	query.setGeoCode(new GeoLocation(40.6567900, -111.9379900), 15, Query.MILES);
+	query.setSince("2016-1-1");
+	try
+	{
+		QueryResult result = chatbotTwitter.search(query);
+		results += "Count : " + result.getTweets().size(); 
+		for(Status tweet : result.getTweets())
+		{
+			results += "@" + tweet.getUser().getName() + ":" + tweet.getText() + "\n";
+		}
+	}
+	catch (TwitterException error)
+	{
+		error.printStackTrace();
+	}
+	return results;
+}
 	public String topResults()
 	{
 		String tweetResults = "";

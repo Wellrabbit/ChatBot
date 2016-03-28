@@ -72,6 +72,19 @@ public class ChatController
 		}
 	}
 	
+	public String doInvestigation(String investigation)
+	{
+		String queryInvestigation = "This " + investigation  + " has been used many time";
+		try 
+		{
+			queryInvestigation += myTwitter.sampleInvestigation(investigation);
+		}
+		catch(TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		return queryInvestigation;
+	}
 	public void sendTweet(String tweet)
 	{
 		myTwitter.sendTweet(tweet);
