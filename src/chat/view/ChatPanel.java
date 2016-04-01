@@ -13,6 +13,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
 import chat.controller.ChatController;
+import chat.controller.IOController;
 
 public class ChatPanel extends JPanel
 {
@@ -207,6 +208,22 @@ public class ChatPanel extends JPanel
 				ChatbotTextArea.setText(baseController.doInvestigation("nigga"));
 			}
 		});
+	saveButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent click)
+	{
+		String file = IOController.saveFile(ChatbotTextArea.getText());
+		promptLable.setText(file);
+	}
+	});
+	openButton.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent click)
+		{
+			String loadedText = IOController.readTextFromFile(promptLable.getText());
+			ChatbotTextArea.setText(loadedText);
+		}
+	});
 	}
 
 	public JTextArea getResponceFeild()
