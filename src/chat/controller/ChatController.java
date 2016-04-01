@@ -1,6 +1,8 @@
 package chat.controller;
 
-import chat.model.Chatbot;
+import twitter4j.TwitterException;
+import chat.model.CTECTwitter;
+import chat.model.ChatBot;
 import chat.view.ChatView;
 import chat.view.ChatFrame;
 
@@ -14,17 +16,18 @@ import chat.view.ChatFrame;
 public class ChatController
 {
 
-	private Chatbot chatBot;
+	private ChatBot chatBot;
 	private ChatView myView;
-
+	private CTECTwitter myTwitter;
 	private ChatFrame baseFrame;
 
 	public ChatController()
 	{
 		myView = new ChatView();
 		String user = myView.getAnswers("What is your name");
-		chatBot = new Chatbot(user);
+		chatBot = new ChatBot(user);
 		baseFrame = new ChatFrame(this);
+		myTwitter = new CTECTwitter(this);
 	}
 
 	public void start()
@@ -36,6 +39,26 @@ public class ChatController
  * Used in popup controller version to run chat between user and chatbot. 
  * Takes user input loops it to processQuestion switch statment and displays responce
  */
+	public void handleErrors(String error)
+	{
+		myView.displayAnswer(error);
+	}
+	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twitter user " + userName + " has many tweeets.";
+		
+		try
+		{
+			myTwitter.loadTweets(userName);
+		}
+		catch (TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis += myTwitter.topResults();
+		return userAnalysis;
+	}
 	private void chat()
 	{
 		String textFromUser = myView.getAnswers("Talk to the chatbot");
@@ -48,6 +71,25 @@ public class ChatController
 
 		}
 	}
+	
+	public String doInvestigation(String investigation)
+	{
+		String queryInvestigation = "This " + investigation  + " has been used many time";
+		try 
+		{
+			queryInvestigation += myTwitter.sampleInvestigation(investigation);
+		}
+		catch(TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		return queryInvestigation;
+	}
+	public void sendTweet(String tweet)
+	{
+		myTwitter.sendTweet(tweet);
+	}
+	
 	/**
 	 * Used in the GUI version.
 	 * Sends the users text to the chatbot then loops it back.
@@ -75,12 +117,12 @@ public class ChatController
 	
 	
 
-	public Chatbot getChatbot()
+	public ChatBot getChatbot()
 	{
 		return chatBot;
 	}
 
-	public void setChatbot(Chatbot chatBot)
+	public void setChatbot(ChatBot chatBot)
 	{
 		this.chatBot = chatBot;
 	}
